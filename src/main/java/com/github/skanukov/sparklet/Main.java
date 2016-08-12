@@ -1,9 +1,9 @@
 package com.github.skanukov.sparklet;
 
-import static spark.Spark.get;
+import com.github.skanukov.sparklet.config.Router;
 
 public class Main {
     public static void main(String[] args) {
-        get("/hello", (req, res) -> "Hello World");
+        new Router().route();
     }
 }
