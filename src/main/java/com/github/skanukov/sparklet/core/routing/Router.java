@@ -1,6 +1,8 @@
 package com.github.skanukov.sparklet.core.routing;
 
 import com.github.skanukov.sparklet.core.controller.action.TemplateAction;
+import com.mitchellbosecke.pebble.PebbleEngine;
+import com.mitchellbosecke.pebble.loader.FileLoader;
 import spark.Spark;
 import spark.template.pebble.PebbleTemplateEngine;
 
@@ -50,7 +52,10 @@ public abstract class Router {
      * @return Router for fluent interface.
      */
     protected Router get(String path, TemplateAction action) {
-        Spark.get(basePath + path, action::call, new PebbleTemplateEngine());
+        PebbleEngine pebbleEngine = new PebbleEngine(new FileLoader());
+        // TODO: if debug
+        pebbleEngine.setTemplateCache(null);
+        Spark.get(basePath + path, action::call, new PebbleTemplateEngine(pebbleEngine));
         return this;
     }
 }

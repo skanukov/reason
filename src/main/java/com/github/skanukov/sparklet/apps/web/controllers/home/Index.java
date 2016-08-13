@@ -37,6 +37,6 @@ public class Index extends HomeAction implements TemplateAction {
         logger.info(String.format("Index::index action called %d", count.incrementAndGet()));
         Map<String, Object> attributes = new HashMap<>();
         attributes.put("message", "Hello, world!");
-        return new ModelAndView(attributes, "/templates/web/home/index.html");
+        return new ModelAndView(attributes, "./templates/web/home/index.html");
     }
 }
