@@ -12,7 +12,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * Home controller Index action.
  */
-public class Index extends WebAction implements Callable {
+public class Index extends HomeAction implements Callable {
     private static final Logger logger = LoggerFactory.getLogger(Index.class);
     private static final AtomicInteger count = new AtomicInteger(0);
 
