@@ -1,4 +1,4 @@
-package com.github.skanukov.sparklet.core.action;
+package com.github.skanukov.sparklet.core.controller.action;
 
 import spark.Request;
 import spark.Response;
@@ -6,7 +6,7 @@ import spark.Response;
 /**
  * Defines interface for applications actions.
  */
-public interface Action {
+public interface Callable {
     /**
      * Handles the http request.
      *

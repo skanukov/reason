@@ -1,6 +1,6 @@
 package com.github.skanukov.sparklet.core.routing;
 
-import com.github.skanukov.sparklet.core.action.Action;
+import com.github.skanukov.sparklet.core.controller.action.Callable;
 import spark.Spark;
 
 /**
@@ -48,7 +48,7 @@ public abstract class Router {
      * @param action The action to use for handling.
      * @return Router for fluent interface.
      */
-    protected Router get(String path, Action action) {
+    protected Router get(String path, Callable action) {
         Spark.get(basePath + path, action::call);
         return this;
     }
