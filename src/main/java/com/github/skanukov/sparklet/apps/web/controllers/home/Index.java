@@ -1,18 +1,20 @@
 package com.github.skanukov.sparklet.apps.web.controllers.home;
 
-import com.github.skanukov.sparklet.apps.web.controllers.WebAction;
-import com.github.skanukov.sparklet.core.controller.action.Callable;
+import com.github.skanukov.sparklet.core.controller.action.TemplateAction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Home controller Index action.
  */
-public class Index extends HomeAction implements Callable {
+public class Index extends HomeAction implements TemplateAction {
     private static final Logger logger = LoggerFactory.getLogger(Index.class);
     private static final AtomicInteger count = new AtomicInteger(0);
 
@@ -31,8 +33,10 @@ public class Index extends HomeAction implements Callable {
      * @return Action result.
      */
     @Override
-    public Object call(Request req, Response res) {
+    public ModelAndView call(Request req, Response res) {
         logger.info(String.format("Index::index action called %d", count.incrementAndGet()));
-        return "Hello, world!";
+        Map<String, Object> attributes = new HashMap<>();
+        attributes.put("message", "Hello, world!");
+        return new ModelAndView(attributes, "/templates/web/home/index.html");
     }
 }

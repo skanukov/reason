@@ -1,7 +1,8 @@
 package com.github.skanukov.sparklet.core.routing;
 
-import com.github.skanukov.sparklet.core.controller.action.Callable;
+import com.github.skanukov.sparklet.core.controller.action.TemplateAction;
 import spark.Spark;
+import spark.template.pebble.PebbleTemplateEngine;
 
 /**
  * Base class for all application routers.
@@ -45,11 +46,11 @@ public abstract class Router {
      * Handles GET request.
      *
      * @param path   The path to handle.
-     * @param action The action to use for handling.
+     * @param action The action rendering a template to use for handling.
      * @return Router for fluent interface.
      */
-    protected Router get(String path, Callable action) {
-        Spark.get(basePath + path, action::call);
+    protected Router get(String path, TemplateAction action) {
+        Spark.get(basePath + path, action::call, new PebbleTemplateEngine());
         return this;
     }
 }
