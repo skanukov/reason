@@ -1,11 +1,8 @@
 package com.github.skanukov.sparklet.core.routing;
 
-import com.github.skanukov.sparklet.Application;
 import com.github.skanukov.sparklet.core.controller.action.TemplateAction;
-import com.mitchellbosecke.pebble.PebbleEngine;
-import com.mitchellbosecke.pebble.loader.FileLoader;
 import spark.Spark;
-import spark.template.pebble.PebbleTemplateEngine;
+import spark.TemplateEngine;
 
 /**
  * Base class for all application routers.
@@ -50,15 +47,10 @@ public abstract class Router {
      *
      * @param path   The path to handle.
      * @param action The action rendering a template to use for handling.
-     * @return Router for fluent interface.
+     * @return The Router instance for fluent interface.
      */
-    protected Router get(String path, TemplateAction action) {
-        PebbleEngine pebbleEngine = new PebbleEngine(new FileLoader());
-        // TODO: use core class
-        if (Application.getInstance().getSettings().isDebug()) {
-            pebbleEngine.setTemplateCache(null);
-        }
-        Spark.get(basePath + path, action::call, new PebbleTemplateEngine(pebbleEngine));
+    protected Router get(String path, TemplateAction action, TemplateEngine engine) {
+        Spark.get(basePath + path, action::call, engine);
         return this;
     }
 }

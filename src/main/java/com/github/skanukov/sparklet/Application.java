@@ -1,6 +1,6 @@
 package com.github.skanukov.sparklet;
 
-import com.github.skanukov.sparklet.config.AppRouter;
+import com.github.skanukov.sparklet.config.RouteDispatcher;
 import com.github.skanukov.sparklet.config.Settings;
 
 public class Application {
@@ -32,7 +32,7 @@ public class Application {
      */
     public Application init() {
         settings = Settings.load();
-        new AppRouter().route();
+        new RouteDispatcher().dispatch();
         return this;
     }
 
