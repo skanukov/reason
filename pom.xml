@@ -44,5 +44,12 @@
             <artifactId>spark-template-pebble</artifactId>
             <version>2.3</version>
         </dependency>
+
+        <!-- JSON library -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.7</version>
+        </dependency>
     </dependencies>
 </project>
