@@ -1,13 +1,12 @@
 package com.github.skanukov.sparklet.apps.web.config;
 
 import com.github.skanukov.sparklet.apps.web.controllers.home.Index;
-import com.github.skanukov.sparklet.routing.PebbleRouter;
 import com.github.skanukov.sparklet.core.routing.Router;
 
 /**
  * Handles all routes for the current application.
  */
-public final class WebRouter extends PebbleRouter {
+public final class WebRouter extends Router {
     /**
      * Creates router for the current application with default settings.
      */

@@ -5,8 +5,8 @@ package com.github.skanukov.sparklet.core.routing;
  */
 public interface Dispatcher {
     /**
-     * Dispatches
-     * @return
+     * Dispatches application routers.
+     * @return The Dispatcher instance for fluent interface.
      */
     Dispatcher dispatch();
 }

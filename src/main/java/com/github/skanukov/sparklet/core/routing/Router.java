@@ -1,8 +1,7 @@
 package com.github.skanukov.sparklet.core.routing;
 
-import com.github.skanukov.sparklet.core.controller.action.TemplateAction;
+import com.github.skanukov.sparklet.core.controller.action.Action;
 import spark.Spark;
-import spark.TemplateEngine;
 
 /**
  * Base class for all application routers.
@@ -49,8 +48,8 @@ public abstract class Router {
      * @param action The action rendering a template to use for handling.
      * @return The Router instance for fluent interface.
      */
-    protected Router get(String path, TemplateAction action, TemplateEngine engine) {
-        Spark.get(basePath + path, action::call, engine);
+    protected Router get(String path, Action action) {
+        Spark.get(basePath + path, action::call);
         return this;
     }
 }
