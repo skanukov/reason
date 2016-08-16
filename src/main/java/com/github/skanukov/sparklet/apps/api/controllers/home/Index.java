@@ -19,6 +19,7 @@ public class Index extends HomeAction implements Action {
      */
     @Override
     public Object call(Request req, Response res) {
+        res.type("application/json");
         return renderJson(Arrays.asList(1, 2, 3));
     }
 }

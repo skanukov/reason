@@ -10,7 +10,7 @@ import spark.template.pebble.PebbleTemplateEngine;
  * Base class for the current application actions.
  */
 public abstract class WebAction {
-    protected Object renderTemplate(ModelAndView modelAndView) {
+    protected String renderTemplate(ModelAndView modelAndView) {
         PebbleEngine pebbleEngine = new PebbleEngine(new FileLoader());
         if (Application.getInstance().getSettings().isDebug()) {
             pebbleEngine.setTemplateCache(null);
