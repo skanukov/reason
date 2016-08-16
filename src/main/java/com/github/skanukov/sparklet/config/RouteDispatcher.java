@@ -1,5 +1,6 @@
 package com.github.skanukov.sparklet.config;
 
+import com.github.skanukov.sparklet.apps.api.config.ApiRouter;
 import com.github.skanukov.sparklet.apps.web.config.WebRouter;
 import com.github.skanukov.sparklet.core.routing.Dispatcher;
 
@@ -15,6 +16,7 @@ public final class RouteDispatcher implements Dispatcher {
     @Override
     public Dispatcher dispatch() {
         new WebRouter().route();
+        new ApiRouter("/api").route();
         return this;
     }
 }
