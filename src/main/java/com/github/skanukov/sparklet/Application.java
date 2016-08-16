@@ -2,8 +2,9 @@ package com.github.skanukov.sparklet;
 
 import com.github.skanukov.sparklet.config.RouteDispatcher;
 import com.github.skanukov.sparklet.config.Settings;
+import spark.servlet.SparkApplication;
 
-public class Application {
+public class Application implements SparkApplication {
     private Settings settings;
 
     //<editor-fold desc="Singleton region.">
@@ -27,13 +28,11 @@ public class Application {
 
     /**
      * Entry point for Sparklet application.
-     *
-     * @return The Application instance for fluent interface.
      */
-    public Application init() {
+    @Override
+    public void init() {
         settings = Settings.load();
         new RouteDispatcher().dispatch();
-        return this;
     }
 
     /**
