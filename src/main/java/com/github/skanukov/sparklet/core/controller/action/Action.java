@@ -6,6 +6,7 @@ import spark.Response;
 /**
  * Defines interface for applications actions rendering templates.
  */
+@FunctionalInterface
 public interface Action {
     /**
      * Handles the http request.

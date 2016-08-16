@@ -26,30 +26,23 @@ public abstract class Router {
 
     /**
      * Mounts the base path.
-     *
-     * @param basePath The base path for router.
      */
-    public Router mount(String basePath) {
+    public void mount(String basePath) {
         this.basePath = basePath;
-        return this;
     }
 
     /**
      * Abstract method defines all routes.
-     *
-     * @return Router for fluent interface.
      */
-    public abstract Router route();
+    public abstract void route();
 
     /**
      * Handles GET request.
      *
      * @param path   The path to handle.
      * @param action The action rendering a template to use for handling.
-     * @return The Router instance for fluent interface.
      */
-    protected Router get(String path, Action action) {
+    protected void get(String path, Action action) {
         Spark.get(basePath + path, action::call);
-        return this;
     }
 }

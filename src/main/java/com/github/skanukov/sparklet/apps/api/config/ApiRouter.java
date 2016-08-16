@@ -25,12 +25,9 @@ public final class ApiRouter extends Router {
 
     /**
      * Defines all routes for the current applications.
-     *
-     * @return The Router instance for fluent interface.
      */
     @Override
-    public Router route() {
+    public void route() {
         get("/", new Index());
-        return this;
     }
 }
