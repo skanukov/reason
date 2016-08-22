@@ -1,6 +1,6 @@
 package com.github.skanukov.sparklet.core.routing;
 
-import com.github.skanukov.sparklet.core.controller.action.Action;
+import com.github.skanukov.sparklet.core.action.HttpAction;
 import spark.Spark;
 
 /**
@@ -42,7 +42,7 @@ public abstract class Router {
      * @param path   The path to handle.
      * @param action The action rendering a template to use for handling.
      */
-    protected void get(String path, Action action) {
+    protected void get(String path, HttpAction action) {
         Spark.get(basePath + path, action::call);
     }
 }

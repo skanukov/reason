@@ -1,6 +1,6 @@
 package com.github.skanukov.sparklet.apps.api.config;
 
-import com.github.skanukov.sparklet.apps.api.controllers.home.Index;
+import com.github.skanukov.sparklet.apps.api.controllers.home.IndexAction;
 import com.github.skanukov.sparklet.core.routing.Router;
 
 /**
@@ -28,6 +28,6 @@ public final class ApiRouter extends Router {
      */
     @Override
     public void route() {
-        get("/", new Index());
+        get("/", new IndexAction());
     }
 }

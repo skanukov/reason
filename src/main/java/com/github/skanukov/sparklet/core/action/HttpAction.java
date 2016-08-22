@@ -1,4 +1,4 @@
-package com.github.skanukov.sparklet.core.controller.action;
+package com.github.skanukov.sparklet.core.action;
 
 import spark.Request;
 import spark.Response;
@@ -7,13 +7,13 @@ import spark.Response;
  * Defines interface for applications actions rendering templates.
  */
 @FunctionalInterface
-public interface Action {
+public interface HttpAction {
     /**
      * Handles the http request.
      *
      * @param req The http request.
      * @param res The http request.
-     * @return Action result.
+     * @return HttpAction result.
      */
     Object call(Request req, Response res);
 }
