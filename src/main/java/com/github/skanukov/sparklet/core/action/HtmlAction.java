@@ -1,9 +1,11 @@
 package com.github.skanukov.sparklet.core.action;
 
-import com.mitchellbosecke.pebble.PebbleEngine;
-import com.mitchellbosecke.pebble.loader.FileLoader;
+import freemarker.template.Configuration;
 import spark.ModelAndView;
-import spark.template.pebble.PebbleTemplateEngine;
+import spark.template.freemarker.FreeMarkerEngine;
+
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Defines interface for applications actions rendering HTML templates.
@@ -17,7 +19,13 @@ public interface HtmlAction extends HttpAction {
      * @return The rendered HTML template.
      */
     default String renderTemplate(ModelAndView modelAndView) {
-        PebbleEngine pebbleEngine = new PebbleEngine(new FileLoader());
-        return new PebbleTemplateEngine(pebbleEngine).render(modelAndView);
+        final Configuration templateEngineConfig = new Configuration();
+        try {
+            templateEngineConfig.setDirectoryForTemplateLoading(new File(System.getProperty("user.dir")));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return new FreeMarkerEngine(templateEngineConfig).render(modelAndView);
     }
 }
