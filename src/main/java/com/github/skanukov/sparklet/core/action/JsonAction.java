@@ -1,6 +1,6 @@
 package com.github.skanukov.sparklet.core.action;
 
-import com.google.gson.Gson;
+import com.github.skanukov.sparklet.Application;
 import spark.Response;
 
 /**
@@ -17,7 +17,6 @@ public interface JsonAction extends HttpAction {
      */
     default String renderJson(Response res, Object object) {
         res.type("application/json");
-        Gson gson = new Gson();
-        return gson.toJson(object);
+        return Application.getInstance().getJsonEngine().toJson(object);
     }
 }
