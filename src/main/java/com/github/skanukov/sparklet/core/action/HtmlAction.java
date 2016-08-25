@@ -1,6 +1,6 @@
 package com.github.skanukov.sparklet.core.action;
 
-import com.github.skanukov.sparklet.Application;
+import com.github.skanukov.sparklet.core.template.TemplateEngineFactory;
 import spark.ModelAndView;
 
 /**
@@ -15,6 +15,6 @@ public interface HtmlAction extends HttpAction {
      * @return The rendered HTML template.
      */
     default String renderTemplate(ModelAndView modelAndView) {
-        return Application.getInstance().getTemplateEngine().render(modelAndView);
+        return TemplateEngineFactory.getTemplateEngine().render(modelAndView);
     }
 }

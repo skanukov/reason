@@ -1,6 +1,6 @@
 package com.github.skanukov.sparklet.core.action;
 
-import com.github.skanukov.sparklet.Application;
+import com.github.skanukov.sparklet.core.json.JsonEngineFactory;
 import spark.Response;
 
 /**
@@ -17,6 +17,6 @@ public interface JsonAction extends HttpAction {
      */
     default String renderJson(Response res, Object object) {
         res.type("application/json");
-        return Application.getInstance().getJsonEngine().toJson(object);
+        return JsonEngineFactory.getJsonEngine().toJson(object);
     }
 }
