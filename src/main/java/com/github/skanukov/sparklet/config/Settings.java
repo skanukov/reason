@@ -1,6 +1,6 @@
 package com.github.skanukov.sparklet.config;
 
-import com.google.gson.Gson;
+import com.github.skanukov.sparklet.core.json.JsonEngineFactory;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -34,16 +34,14 @@ public class Settings {
      * @return The Settings instance.
      */
     public static Settings load() {
-        Settings settings = null;
         Path settingFilePath = Paths.get(SETTINGS_FILE_PATH);
+        String settingsFileContent = null;
         try {
-            String settingsFileContent = new String(Files.readAllBytes(settingFilePath), StandardCharsets.UTF_8);
-            Gson gson = new Gson();
-            settings = gson.fromJson(settingsFileContent, Settings.class);
+            settingsFileContent = new String(Files.readAllBytes(settingFilePath), StandardCharsets.UTF_8);
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(1);
         }
-        return settings;
+        return JsonEngineFactory.getJsonEngine().fromJson(settingsFileContent, Settings.class);
     }
 }
