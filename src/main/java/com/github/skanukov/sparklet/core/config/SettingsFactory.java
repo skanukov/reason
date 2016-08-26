@@ -1,6 +1,7 @@
-package com.github.skanukov.sparklet.config;
+package com.github.skanukov.sparklet.core.config;
 
 import com.github.skanukov.sparklet.core.json.JsonEngineFactory;
+import com.google.gson.JsonObject;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -9,31 +10,29 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * Holds application settings.
+ * Holds the application settings.
  */
-public class Settings {
+public final class SettingsFactory {
     private static final String SETTINGS_FILE_PATH = "./config/application.json";
 
-    private boolean debug;
+    private SettingsFactory() {
+    }
 
-    private Settings() {
+    // Lazy initialization
+    private static class SettingsHolder {
+        private static final JsonObject INSTANCE = loadFromFile();
     }
 
     /**
-     * Indicates if the application in debug mode.
+     * Returns the application settings.
      *
-     * @return True if debug mode enabled, false otherwise.
+     * @return The application settings.
      */
-    public boolean isDebug() {
-        return debug;
+    public static JsonObject getSettings() {
+        return SettingsHolder.INSTANCE;
     }
 
-    /**
-     * Loads application settings from pre-defined file.
-     *
-     * @return The Settings instance.
-     */
-    public static Settings load() {
+    private static JsonObject loadFromFile() {
         Path settingFilePath = Paths.get(SETTINGS_FILE_PATH);
         String settingsFileContent = null;
         try {
@@ -42,6 +41,6 @@ public class Settings {
             e.printStackTrace();
             System.exit(1);
         }
-        return JsonEngineFactory.getJsonEngine().fromJson(settingsFileContent, Settings.class);
+        return JsonEngineFactory.getJsonEngine().fromJson(settingsFileContent, JsonObject.class);
     }
 }

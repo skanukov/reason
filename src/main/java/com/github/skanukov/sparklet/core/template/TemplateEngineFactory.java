@@ -1,5 +1,6 @@
 package com.github.skanukov.sparklet.core.template;
 
+import com.github.skanukov.sparklet.core.config.SettingsFactory;
 import freemarker.template.Configuration;
 import spark.TemplateEngine;
 import spark.template.freemarker.FreeMarkerEngine;
@@ -42,9 +43,9 @@ public final class TemplateEngineFactory {
             e.printStackTrace();
             System.exit(1);
         }
+        if (SettingsFactory.getSettings().get("debug").getAsBoolean()) {
+            templateEngineConfig.setTemplateUpdateDelay(0);
+        }
         return new FreeMarkerEngine(templateEngineConfig);
-//        if (Application.getInstance().getSettings().isDebug()) {
-//            templateEngineConfig.setTemplateUpdateDelay(0);
-//        }
     }
 }
