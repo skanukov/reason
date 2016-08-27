@@ -1,10 +1,11 @@
 'use strict';
 
-let autoprefixer = require('autoprefixer');
-let ExtractTextPlugin = require("extract-text-webpack-plugin");
+const autoprefixer = require('autoprefixer');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
     entry: {
+        bundle: './assets/js/app.js',
         styles: './assets/css/app.scss'
     },
     output: {
