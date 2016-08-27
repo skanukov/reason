@@ -16,6 +16,8 @@
     </head>
     <body>
         <@page_content/>
+
+        <#include "../shared/_scripts.ftl">
         <@page_scripts/>
     </body>
 </html>

@@ -14,6 +14,12 @@ hs_err_pid*
 # Compiled files
 target/
 
+# Node modules
+node_modules/
+
+# Compiled assets
+public/assets/
+
 # Idea settings
 .idea/
 *.iml
