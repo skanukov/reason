@@ -17,6 +17,9 @@ target/
 # Node modules
 node_modules/
 
+# Compiled assets
+public/assets/
+
 # Idea settings
 .idea/
 *.iml

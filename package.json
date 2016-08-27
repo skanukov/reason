@@ -9,6 +9,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "css-loader": "^0.24.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "resolve-url-loader": "^1.6.0",
+    "sass-loader": "^4.0.0",
+    "style-loader": "^0.13.1",
     "webpack": "^1.13.2"
   }
 }
