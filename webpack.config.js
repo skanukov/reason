@@ -2,9 +2,10 @@
 
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
-const autoprefixer = require('autoprefixer');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const path = require('path');
+const autoprefixer = require('autoprefixer'),
+    ExtractTextPlugin = require('extract-text-webpack-plugin'),
+    path = require('path'),
+    webpack = require('webpack');
 
 module.exports = {
     context: path.resolve(__dirname, './assets'),
@@ -30,9 +31,13 @@ module.exports = {
     },
 
     plugins: [
-        // Extract css to separate file
+        // Extract CSS to separate file
         new ExtractTextPlugin('[name].css', {
             allChunks: true
+        }),
+        // Provide jQuery globally
+        new webpack.ProvidePlugin({
+            jQuery: 'jquery'
         })
     ],
 

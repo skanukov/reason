@@ -1,1 +1,1 @@
-console.log('home');
+console.log(jQuery().jquery);
