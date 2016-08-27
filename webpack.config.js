@@ -5,6 +5,7 @@ const NODE_ENV = process.env.NODE_ENV || 'development';
 const autoprefixer = require('autoprefixer'),
     ExtractTextPlugin = require('extract-text-webpack-plugin'),
     path = require('path'),
+    postcssFlexbugsFixes = require('postcss-flexbugs-fixes'),
     webpack = require('webpack');
 
 module.exports = {
@@ -42,7 +43,11 @@ module.exports = {
     ],
 
     postcss: function () {
-        return [autoprefixer];
+        return [postcssFlexbugsFixes, autoprefixer];
+    },
+
+    resolve: {
+        modulesDirectories: ['node_modules']
     },
 
     watch: NODE_ENV == 'development'
