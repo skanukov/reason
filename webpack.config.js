@@ -2,7 +2,7 @@
 
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
-const autoprefixer = require('autoprefixer'),
+const cssnano = require('cssnano'),
     ExtractTextPlugin = require('extract-text-webpack-plugin'),
     path = require('path'),
     postcssFlexbugsFixes = require('postcss-flexbugs-fixes'),
@@ -43,7 +43,15 @@ module.exports = {
     ],
 
     postcss: function () {
-        return [postcssFlexbugsFixes, autoprefixer];
+        return [
+            postcssFlexbugsFixes,
+            cssnano({
+                autoprefixer: {
+                    add: true
+                },
+                discardComments: NODE_ENV == 'production'
+            })
+        ];
     },
 
     resolve: {
