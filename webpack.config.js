@@ -17,7 +17,6 @@ module.exports = {
     context: path.resolve(__dirname, './assets'),
     entry: {
         bundle: './js/app.js',
-        styles: './scss/app.scss'
     },
     output: {
         path: path.resolve(__dirname, './public/assets'),
@@ -32,6 +31,11 @@ module.exports = {
             {
                 test: /\.scss$/,
                 loader: ExtractTextPlugin.extract('style-loader', sassLoader)
+            },
+            // Copy images, fonts, etc.
+            {
+                test: /\.woff2?$|\.ttf$|\.eot$|\.svg$|\.png$|\.jpe?g$|\.gif$/,
+                loader: 'file-loader?name=[name]-[hash].[ext]'
             }
         ]
     },
@@ -50,8 +54,8 @@ module.exports = {
             postcssFlexbugsFixes,
             cssnano({
                 autoprefixer: {
-                    add: true,
-                    remove: true
+                    add: true, // add required prefixes
+                    remove: true // remove unnecessary prefixes
                 },
                 discardComments: {
                     removeAll: true

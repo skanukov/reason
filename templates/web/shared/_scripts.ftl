@@ -1,1 +1,1 @@
-<script src="assets/bundle.js"></script>
+<script src="/assets/bundle.js"></script>
