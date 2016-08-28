@@ -4,14 +4,15 @@ const NODE_ENV = process.env.NODE_ENV || 'development',
     isDevelopment = 'development' == NODE_ENV,
     isProduction = !isDevelopment;
 
-const cssnano = require('cssnano'),
+const autoprefixer = require('autoprefixer'),
     ExtractTextPlugin = require('extract-text-webpack-plugin'),
     path = require('path'),
     postcssFlexbugsFixes = require('postcss-flexbugs-fixes'),
     webpack = require('webpack');
 
 // Minify CSS for production
-const sassLoader = 'css-loader' + (isDevelopment ? '?sourceMap' : '!postcss-loader') + '!resolve-url!sass-loader?sourceMap';
+const sassLoader = 'css-loader' + (isDevelopment ? '?sourceMap' : '!postcss-loader') +
+    '!sass-loader' + (isDevelopment ? '?sourceMap' : '');
 
 module.exports = {
     context: path.resolve(__dirname, './assets'),
@@ -50,19 +51,7 @@ module.exports = {
     ],
 
     postcss: function () {
-        return [
-            postcssFlexbugsFixes,
-            cssnano({
-                autoprefixer: {
-                    add: true, // add required prefixes
-                    remove: true // remove unnecessary prefixes
-                },
-                discardComments: {
-                    removeAll: true
-                },
-                safe: true
-            })
-        ];
+        return [postcssFlexbugsFixes, autoprefixer];
     },
 
     resolve: {

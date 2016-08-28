@@ -3,8 +3,8 @@
 // Include SASS
 require('../scss/app.scss');
 
-// Include images not used by styles, nut required by HTML
-// require('../img/...');
+// Include images not used in styles, but required by HTML
+// require('../img/sample.png');
 
 // Include scripts
 require('./home');

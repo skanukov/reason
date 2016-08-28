@@ -5,8 +5,6 @@
 <#macro page_content>
 <h1>${message}</h1>
 <h2>The above text is set using a FreeMarkerEngine</h2>
-
-<div class="pic"></div>
 </#macro>
 
 <@display_page/>
