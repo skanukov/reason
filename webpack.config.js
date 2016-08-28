@@ -1,12 +1,17 @@
 'use strict';
 
-const NODE_ENV = process.env.NODE_ENV || 'development';
+const NODE_ENV = process.env.NODE_ENV || 'development',
+    isDevelopment = 'development' == NODE_ENV,
+    isProduction = !isDevelopment;
 
 const cssnano = require('cssnano'),
     ExtractTextPlugin = require('extract-text-webpack-plugin'),
     path = require('path'),
     postcssFlexbugsFixes = require('postcss-flexbugs-fixes'),
     webpack = require('webpack');
+
+// Minify CSS for production
+const sassLoader = 'css-loader' + (isDevelopment ? '?sourceMap' : '!postcss-loader') + '!resolve-url!sass-loader?sourceMap';
 
 module.exports = {
     context: path.resolve(__dirname, './assets'),
@@ -19,23 +24,21 @@ module.exports = {
         filename: '[name].js'
     },
 
-    devtool: NODE_ENV == 'development' ? 'cheap-eval-source-map' : null,
+    devtool: isDevelopment ? '#cheap-module-inline-source-map' : null,
 
     module: {
         loaders: [
             // Compile SASS
             {
                 test: /\.scss$/,
-                loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader!resolve-url!sass-loader?sourceMap')
+                loader: ExtractTextPlugin.extract('style-loader', sassLoader)
             }
         ]
     },
 
     plugins: [
         // Extract CSS to separate file
-        new ExtractTextPlugin('[name].css', {
-            allChunks: true
-        }),
+        new ExtractTextPlugin('[name].css'),
         // Provide jQuery globally
         new webpack.ProvidePlugin({
             jQuery: 'jquery'
@@ -47,22 +50,26 @@ module.exports = {
             postcssFlexbugsFixes,
             cssnano({
                 autoprefixer: {
-                    add: true
+                    add: true,
+                    remove: true
                 },
-                discardComments: NODE_ENV == 'production'
+                discardComments: {
+                    removeAll: true
+                },
+                safe: true
             })
         ];
     },
 
     resolve: {
-        modulesDirectories: ['node_modules']
+        modulesDirectories: ['./node_modules']
     },
 
-    watch: NODE_ENV == 'development'
+    watch: isDevelopment
 };
 
 // Minify JS in production mode
-if (NODE_ENV == 'production') {
+if (isProduction) {
     module.exports.plugins.push(
         new webpack.optimize.UglifyJsPlugin({
             compress: {
