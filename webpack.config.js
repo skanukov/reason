@@ -17,7 +17,7 @@ module.exports = {
     context: path.resolve(__dirname, './assets'),
     entry: {
         bundle: './js/app.js',
-        styles: './css/app.scss'
+        styles: './scss/app.scss'
     },
     output: {
         path: path.resolve(__dirname, './public/assets'),
