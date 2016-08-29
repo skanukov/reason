@@ -7,4 +7,5 @@ require('../scss/app.scss');
 // require('../img/sample.png');
 
 // Include scripts
+require('bootstrap/dist/js/bootstrap.js');
 require('./home');
