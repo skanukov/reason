@@ -1,10 +1,11 @@
 {
-  "isDebug": false,
+  "isDebug": true,
   "db": {
     "host": "localhost",
     "port": 5432,
     "database": "demo_dev",
-    "user": "demo_dev",
-    "password": "123"
+    "username": "demo_dev",
+    "password": "123",
+    "maxPoolSize": 10
   }
 }

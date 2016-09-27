@@ -65,5 +65,12 @@
             <artifactId>sql2o</artifactId>
             <version>1.5.4</version>
         </dependency>
+
+        <!-- JDBC connection pool library -->
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>2.5.1</version>
+        </dependency>
     </dependencies>
 </project>
