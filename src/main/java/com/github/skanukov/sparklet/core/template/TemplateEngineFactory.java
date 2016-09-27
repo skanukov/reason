@@ -1,12 +1,10 @@
 package com.github.skanukov.sparklet.core.template;
 
 import com.github.skanukov.sparklet.core.config.SettingsFactory;
-import freemarker.template.Configuration;
+import com.mitchellbosecke.pebble.PebbleEngine;
+import com.mitchellbosecke.pebble.loader.FileLoader;
 import spark.TemplateEngine;
-import spark.template.freemarker.FreeMarkerEngine;
-
-import java.io.File;
-import java.io.IOException;
+import spark.template.pebble.PebbleTemplateEngine;
 
 /**
  * Holds the template engine.
@@ -35,17 +33,10 @@ public final class TemplateEngineFactory {
      * @return The template engine.
      */
     private static TemplateEngine createTemplateEngine() {
-        File currentWorkingDir = new File(System.getProperty("user.dir"));
-        Configuration templateEngineConfig = new Configuration();
-        try {
-            templateEngineConfig.setDirectoryForTemplateLoading(currentWorkingDir);
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.exit(1);
-        }
+        PebbleEngine pebbleEngine = new PebbleEngine(new FileLoader());
         if (SettingsFactory.getSettings().get("isDebug").getAsBoolean()) {
-            templateEngineConfig.setTemplateUpdateDelay(0);
+            pebbleEngine.setTemplateCache(null);
         }
-        return new FreeMarkerEngine(templateEngineConfig);
+        return new PebbleTemplateEngine(pebbleEngine);
     }
 }

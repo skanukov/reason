@@ -1,0 +1,8 @@
+{% extends "./templates/web/layouts/app.peb" %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+  <h1>{{ message }}</h1>
+  <h2>The above text is set using a PebbleTemplateEngine</h2>
+{% endblock %}
