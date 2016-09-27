@@ -1,4 +1,4 @@
-package com.github.skanukov.sparklet.lib.model;
+package com.github.skanukov.sparklet.lib.models;
 
 import com.github.skanukov.sparklet.core.db.Sql2oFactory;
 import org.sql2o.Connection;
@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * User model.
+ * User models.
  */
 public class User {
     private Long id;

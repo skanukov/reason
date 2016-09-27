@@ -1,15 +1,17 @@
-package com.github.skanukov.sparklet.apps.api.config;
+package com.github.skanukov.sparklet.apps.web;
 
+import com.github.skanukov.sparklet.apps.web.controllers.HomeController;
+import com.github.skanukov.sparklet.apps.web.controllers.UserController;
 import com.github.skanukov.sparklet.core.route.Router;
 
 /**
  * Handles all routes for the current application.
  */
-public final class ApiRouter extends Router {
+public final class WebRouter extends Router {
     /**
      * Creates router for the current application with default settings.
      */
-    public ApiRouter() {
+    public WebRouter() {
         super();
     }
 
@@ -18,7 +20,7 @@ public final class ApiRouter extends Router {
      *
      * @param basePath The base path for router.
      */
-    public ApiRouter(String basePath) {
+    public WebRouter(String basePath) {
         super(basePath);
     }
 
@@ -27,7 +29,7 @@ public final class ApiRouter extends Router {
      */
     @Override
     public void route() {
-        get("/", new com.github.skanukov.sparklet.apps.api.controllers.home.IndexAction());
-        get("/users", new com.github.skanukov.sparklet.apps.api.controllers.users.IndexAction());
+        get("/", new HomeController()::actionIndex);
+        get("/users", new UserController()::actionIndex);
     }
 }

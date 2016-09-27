@@ -1,6 +1,5 @@
 package com.github.skanukov.sparklet;
 
-import com.github.skanukov.sparklet.config.RouteDispatcher;
 import com.github.skanukov.sparklet.core.config.SettingsFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +22,6 @@ public enum Application implements SparkApplication {
         if (SettingsFactory.getSettings().get("isDebug").getAsBoolean()) {
             logger.info("Debug mode enabled");
         }
-        new RouteDispatcher().dispatch();
+        new ApplicationDispatcher().dispatch();
     }
 }

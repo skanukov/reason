@@ -1,4 +1,4 @@
-package com.github.skanukov.sparklet.lib.model;
+package com.github.skanukov.sparklet.lib.models;
 
 /**
  * Role enum.
