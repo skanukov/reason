@@ -1,4 +1,4 @@
-package com.github.skanukov.sparklet.core.routing;
+package com.github.skanukov.sparklet.core.route;
 
 /**
  * Base interface for mounting application routers.

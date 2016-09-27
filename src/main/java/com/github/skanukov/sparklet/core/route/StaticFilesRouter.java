@@ -1,4 +1,4 @@
-package com.github.skanukov.sparklet.core.routing;
+package com.github.skanukov.sparklet.core.route;
 
 import spark.Spark;
 

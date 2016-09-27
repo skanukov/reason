@@ -21,7 +21,7 @@ public class IndexAction extends HomeAction implements JsonAction {
     @Override
     public Object call(Request req, Response res) {
         JsonObject appSettings = new JsonObject();
-        appSettings.addProperty("debug", "true");
+        appSettings.addProperty("isDebug", "true");
         JsonObject dbSettings = new JsonObject();
         dbSettings.addProperty("host", "localhost");
         dbSettings.addProperty("port", 4567);

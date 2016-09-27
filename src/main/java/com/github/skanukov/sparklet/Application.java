@@ -20,7 +20,7 @@ public enum Application implements SparkApplication {
     @Override
     public void init() {
         logger.info("Application starting...");
-        if (SettingsFactory.getSettings().get("debug").getAsBoolean()) {
+        if (SettingsFactory.getSettings().get("isDebug").getAsBoolean()) {
             logger.info("Debug mode enabled");
         }
         new RouteDispatcher().dispatch();

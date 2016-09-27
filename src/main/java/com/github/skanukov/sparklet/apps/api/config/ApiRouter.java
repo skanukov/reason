@@ -1,6 +1,6 @@
 package com.github.skanukov.sparklet.apps.api.config;
 
-import com.github.skanukov.sparklet.core.routing.Router;
+import com.github.skanukov.sparklet.core.route.Router;
 
 /**
  * Handles all routes for the current application.

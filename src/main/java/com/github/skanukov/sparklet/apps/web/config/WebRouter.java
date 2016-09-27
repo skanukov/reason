@@ -1,7 +1,7 @@
 package com.github.skanukov.sparklet.apps.web.config;
 
 import com.github.skanukov.sparklet.apps.web.controllers.home.IndexAction;
-import com.github.skanukov.sparklet.core.routing.Router;
+import com.github.skanukov.sparklet.core.route.Router;
 
 /**
  * Handles all routes for the current application.

@@ -43,7 +43,7 @@ public final class TemplateEngineFactory {
             e.printStackTrace();
             System.exit(1);
         }
-        if (SettingsFactory.getSettings().get("debug").getAsBoolean()) {
+        if (SettingsFactory.getSettings().get("isDebug").getAsBoolean()) {
             templateEngineConfig.setTemplateUpdateDelay(0);
         }
         return new FreeMarkerEngine(templateEngineConfig);
