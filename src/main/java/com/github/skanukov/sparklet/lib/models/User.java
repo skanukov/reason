@@ -1,16 +1,18 @@
 package com.github.skanukov.sparklet.lib.models;
 
-import com.github.skanukov.sparklet.core.db.Sql2oFactory;
-import org.sql2o.Connection;
-import org.sql2o.Sql2o;
+import org.sql2o.Query;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * User models.
  */
 public class User {
+    private static final Map<String, String> COLUMN_MAPPINGS = createColumnMappings();
+
     private Long id;
     private String email;
     private String passwordDigest;
@@ -19,21 +21,19 @@ public class User {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    public static List<User> getAll() {
-        Sql2o db = Sql2oFactory.getSql2o();
-        String sql = "SELECT * FROM users";
-
-        List<User> result = null;
-        try (Connection con = db.open()) {
-            result = con.createQuery(sql)
-                    .addColumnMapping("password_digest", "passwordDigest")
-                    .addColumnMapping("remember_token", "rememberToken")
-                    .addColumnMapping("created_at", "createdAt")
-                    .addColumnMapping("updated_at", "updatedAt")
-                    .executeAndFetch(User.class);
-        } catch (Exception e) {
-            e.printStackTrace();
+    public static Query fillColumnMappings(Query query) {
+        for (Map.Entry<String, String> mapping : COLUMN_MAPPINGS.entrySet()) {
+            query.addColumnMapping(mapping.getKey(), mapping.getValue());
         }
-        return result;
+        return query;
+    }
+
+    private static Map<String, String> createColumnMappings() {
+        Map<String, String> columnMappings = new HashMap<>();
+        columnMappings.put("password_digest", "passwordDigest");
+        columnMappings.put("remember_token", "rememberToken");
+        columnMappings.put("created_at", "createdAt");
+        columnMappings.put("updated_at", "updatedAt");
+        return Collections.unmodifiableMap(columnMappings);
     }
 }

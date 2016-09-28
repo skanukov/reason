@@ -2,6 +2,7 @@ package com.github.skanukov.sparklet.lib.repositories;
 
 import com.github.skanukov.sparklet.lib.models.User;
 import org.sql2o.Connection;
+import org.sql2o.Query;
 
 import java.util.List;
 
@@ -13,12 +14,7 @@ public final class UserRepository {
     }
 
     public List<User> getAll() {
-        String sql = "SELECT * FROM users";
-        return connection.createQuery(sql)
-                .addColumnMapping("password_digest", "passwordDigest")
-                .addColumnMapping("remember_token", "rememberToken")
-                .addColumnMapping("created_at", "createdAt")
-                .addColumnMapping("updated_at", "updatedAt")
-                .executeAndFetch(User.class);
+        Query query = connection.createQuery("SELECT * FROM users");
+        return User.fillColumnMappings(query).executeAndFetch(User.class);
     }
 }
