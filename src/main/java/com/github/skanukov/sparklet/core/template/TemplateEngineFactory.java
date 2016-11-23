@@ -1,6 +1,6 @@
 package com.github.skanukov.sparklet.core.template;
 
-import com.github.skanukov.sparklet.core.config.SettingsFactory;
+import com.github.skanukov.sparklet.core.settings.SettingsFactory;
 import com.mitchellbosecke.pebble.PebbleEngine;
 import com.mitchellbosecke.pebble.loader.FileLoader;
 import spark.TemplateEngine;

@@ -1,4 +1,4 @@
-package com.github.skanukov.sparklet.core.config;
+package com.github.skanukov.sparklet.core.settings;
 
 import com.github.skanukov.sparklet.core.json.JsonEngineFactory;
 import com.google.gson.JsonObject;

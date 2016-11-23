@@ -1,6 +1,6 @@
 package com.github.skanukov.sparklet.core.db;
 
-import com.github.skanukov.sparklet.core.config.SettingsFactory;
+import com.github.skanukov.sparklet.core.settings.SettingsFactory;
 import com.google.gson.JsonObject;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;

@@ -1,6 +1,6 @@
 package com.github.skanukov.sparklet;
 
-import com.github.skanukov.sparklet.core.config.SettingsFactory;
+import com.github.skanukov.sparklet.core.settings.SettingsFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import spark.servlet.SparkApplication;
