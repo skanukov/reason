@@ -34,6 +34,7 @@ public final class TemplateEngineFactory {
      */
     private static TemplateEngine createTemplateEngine() {
         PebbleEngine pebbleEngine = new PebbleEngine(new FileLoader());
+        // Disable template caching for debug mode.
         if (SettingsFactory.getSettings().get("isDebug").getAsBoolean()) {
             pebbleEngine.setTemplateCache(null);
         }

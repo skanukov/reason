@@ -30,6 +30,7 @@ public final class WebRouter extends Router {
     @Override
     public void route() {
         get("/", new HomeController()::actionIndex);
+        get("/greet", new HomeController()::actionGreet);
         get("/users", new UserController()::actionIndex);
     }
 }
