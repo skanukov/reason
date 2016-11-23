@@ -2,13 +2,13 @@ package com.github.skanukov.sparklet;
 
 import com.github.skanukov.sparklet.apps.web.WebRouter;
 import com.github.skanukov.sparklet.core.config.SettingsFactory;
-import com.github.skanukov.sparklet.core.route.Dispatcher;
+import com.github.skanukov.sparklet.core.route.IDispatcher;
 import com.github.skanukov.sparklet.core.route.StaticFilesRouter;
 
 /**
  * Handles all routes for applications.
  */
-public final class ApplicationDispatcher implements Dispatcher {
+public final class ApplicationDispatcher implements IDispatcher {
     /**
      * Defines mount points for applications.
      */

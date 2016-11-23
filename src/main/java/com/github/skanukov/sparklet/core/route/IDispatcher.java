@@ -4,7 +4,7 @@ package com.github.skanukov.sparklet.core.route;
  * Base interface for mounting application routers.
  */
 @FunctionalInterface
-public interface Dispatcher {
+public interface IDispatcher {
     /**
      * Dispatches application routers.
      */
