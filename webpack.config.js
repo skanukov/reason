@@ -38,7 +38,9 @@ module.exports = {
   plugins: [
     // Extract CSS to separate file.
     new ExtractTextPlugin(`${getAssetName()}.css`)
-  ]
+  ],
+
+  watch: isDevelopment
 };
 
 // Minify assets for production
