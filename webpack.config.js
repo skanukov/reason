@@ -62,6 +62,11 @@ module.exports = {
 // Minify assets for production.
 if (isProduction) {
   module.exports.plugins.push(
+    // Enable CSS minification.
+    new webpack.LoaderOptionsPlugin({
+      minimize: true
+    }),
+    // Minify assets.
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
