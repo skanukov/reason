@@ -4,7 +4,8 @@ const NODE_ENV = process.env.NODE_ENV || 'development',
   isDevelopment = 'development' == NODE_ENV,
   isProduction = !isDevelopment;
 
-const ExtractTextPlugin = require('extract-text-webpack-plugin'),
+const AssetsPlugin = require('assets-webpack-plugin'),
+  ExtractTextPlugin = require('extract-text-webpack-plugin'),
   path = require('path'),
   webpack = require('webpack');
 
@@ -24,6 +25,7 @@ module.exports = {
     filename: `${getAssetName()}.js`
   },
 
+  // Define source maps.
   devtool: isDevelopment ? '#cheap-module-inline-source-map' : '#cheap-module-source-map',
 
   module: {
@@ -46,7 +48,12 @@ module.exports = {
 
   plugins: [
     // Extract CSS to separate file.
-    new ExtractTextPlugin(`${getAssetName()}.css`)
+    new ExtractTextPlugin(`${getAssetName()}.css`),
+
+    // Create manifest file.
+    new AssetsPlugin({
+      path: path.join(__dirname, './public/assets')
+    })
   ],
 
   watch: isDevelopment
