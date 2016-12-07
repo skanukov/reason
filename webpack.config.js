@@ -33,7 +33,7 @@ module.exports = {
         test: /\.(sass|scss)$/,
         loader: ExtractTextPlugin.extract({
           fallbackLoader: 'style-loader',
-          loader: 'css-loader?sourceMap!sass-loader?sourceMap'
+          loader: 'css-loader?sourceMap&importLoaders=1!postcss-loader!sass-loader?sourceMap'
         })
       },
       // Copy images, fonts, etc.
