@@ -1,13 +1,10 @@
 package com.github.skanukov.sparklet.core.settings;
 
 import com.github.skanukov.sparklet.core.json.JsonEngineFactory;
+import com.github.skanukov.sparklet.core.lang.Files;
 import com.google.gson.JsonObject;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 /**
  * Holds the application settings.
@@ -33,10 +30,9 @@ public final class SettingsFactory {
     }
 
     private static JsonObject loadFromFile() {
-        Path settingFilePath = Paths.get(SETTINGS_FILE_PATH);
         String settingsFileContent = null;
         try {
-            settingsFileContent = new String(Files.readAllBytes(settingFilePath), StandardCharsets.UTF_8);
+            settingsFileContent = Files.readAllText(SETTINGS_FILE_PATH);
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(1);
