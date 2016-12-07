@@ -1,87 +1,80 @@
 'use strict';
 
 const NODE_ENV = process.env.NODE_ENV || 'development',
-    isDevelopment = 'development' == NODE_ENV,
-    isProduction = !isDevelopment;
+  isDevelopment = 'development' == NODE_ENV,
+  isProduction = !isDevelopment;
 
 const AssetsPlugin = require('assets-webpack-plugin'),
-    autoprefixer = require('autoprefixer'),
-    ExtractTextPlugin = require('extract-text-webpack-plugin'),
-    path = require('path'),
-    postcssFlexbugsFixes = require('postcss-flexbugs-fixes'),
-    webpack = require('webpack');
+  ExtractTextPlugin = require('extract-text-webpack-plugin'),
+  path = require('path'),
+  webpack = require('webpack');
 
-// Use PostCSS and disable source maps for production
-const sassLoader = 'css-loader' + (isDevelopment ? '?sourceMap' : '!postcss-loader') +
-    '!sass-loader' + (isDevelopment ? '?sourceMap' : '');
-
-// Add hash to asset name for production
+// Add hash to asset name for production.
 function getAssetName() {
-    return '[name]' + (isProduction ? '-[hash]' : '');
+  return '[name]' + (isProduction ? '-[hash]' : '');
 }
 
 module.exports = {
-    context: path.resolve(__dirname, './assets'),
-    entry: {
-        bundle: './js/app.js',
-    },
-    output: {
-        path: path.resolve(__dirname, './public/assets'),
-        filename: `${getAssetName()}.js`
-    },
+  context: path.join(__dirname, './assets'),
 
-    devtool: isDevelopment ? '#cheap-module-inline-source-map' : null,
+  entry: {
+    bundle: './js/app.js'
+  },
+  output: {
+    path: path.join(__dirname, './public/assets'),
+    filename: `${getAssetName()}.js`
+  },
 
-    module: {
-        loaders: [
-            // Compile SASS
-            {
-                test: /\.scss$/,
-                loader: ExtractTextPlugin.extract('style-loader', sassLoader)
-            },
-            // Copy images, fonts, etc.
-            {
-                test: /\.woff2?$|\.ttf$|\.eot$|\.svg$|\.png$|\.jpe?g$|\.gif$/,
-                loader: `file-loader?name=${getAssetName()}.[ext]`
-            }
-        ]
-    },
+  // Define source maps.
+  devtool: isDevelopment ? '#cheap-module-inline-source-map' : '#cheap-module-source-map',
 
-    plugins: [
-        // Provide jQuery globally
-        new webpack.ProvidePlugin({
-            jQuery: 'jquery'
-        }),
-        // Extract CSS to separate file
-        new ExtractTextPlugin(`${getAssetName()}.css`),
-        // Create manifest file
-        new AssetsPlugin({
-            path: path.resolve(__dirname, './public/assets')
+  module: {
+    rules: [
+      // Compile SCSS.
+      {
+        test: /\.(sass|scss)$/,
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: 'style-loader',
+          loader: 'css-loader?sourceMap&importLoaders=1!postcss-loader!sass-loader?sourceMap'
         })
-    ],
+      },
+      // Copy images, fonts, etc.
+      {
+        test: /\.woff2?$|\.ttf$|\.eot$|\.svg$|\.png$|\.jpe?g$|\.gif$/,
+        loader: `file-loader?name=${getAssetName()}.[ext]`
+      }
+    ]
+  },
 
-    postcss: function () {
-        return [postcssFlexbugsFixes, autoprefixer];
-    },
+  plugins: [
+    // Extract CSS to separate file.
+    new ExtractTextPlugin(`${getAssetName()}.css`),
 
-    resolve: {
-        modulesDirectories: ['./node_modules']
-    },
+    // Create manifest file.
+    new AssetsPlugin({
+      path: path.join(__dirname, './public/assets')
+    })
+  ],
 
-    watch: isDevelopment
+  watch: isDevelopment
 };
 
-// Minify assets for production
+// Minify assets for production.
 if (isProduction) {
-    module.exports.plugins.push(
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            },
-            output: {
-                comments: false,
-            },
-            sourceMap: false
-        })
-    );
+  module.exports.plugins.push(
+    // Enable CSS minification.
+    new webpack.LoaderOptionsPlugin({
+      minimize: true
+    }),
+    // Minify assets.
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      },
+      output: {
+        comments: false,
+      },
+      sourceMap: true
+    })
+  );
 }
