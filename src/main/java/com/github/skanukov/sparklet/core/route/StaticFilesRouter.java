@@ -12,7 +12,7 @@ public final class StaticFilesRouter {
     /**
      * Enables static files handling.
      */
-    public static void handleStaticFiles() {
-        Spark.staticFiles.externalLocation("./public");
+    public static void handleStaticFiles(String staticRoot) {
+        Spark.staticFiles.externalLocation(staticRoot);
     }
 }

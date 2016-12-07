@@ -1,5 +1,6 @@
 {
   "isDebug": true,
+  "staticRoot": "public",
   "db": {
     "host": "localhost",
     "port": 5432,
