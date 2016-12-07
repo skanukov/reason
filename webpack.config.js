@@ -15,6 +15,7 @@ function getAssetName() {
 
 module.exports = {
   context: path.join(__dirname, './assets'),
+
   entry: {
     bundle: './js/app.js'
   },
@@ -26,13 +27,21 @@ module.exports = {
   devtool: isDevelopment ? '#cheap-module-inline-source-map' : '#cheap-module-source-map',
 
   module: {
-    rules: [{
-      test: /\.(sass|scss)$/,
-      loader: ExtractTextPlugin.extract({
-        fallbackLoader: 'style-loader',
-        loader: 'css-loader?sourceMap!sass-loader?sourceMap'
-      })
-    }]
+    rules: [
+      // Compile SCSS.
+      {
+        test: /\.(sass|scss)$/,
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: 'style-loader',
+          loader: 'css-loader?sourceMap!sass-loader?sourceMap'
+        })
+      },
+      // Copy images, fonts, etc.
+      {
+        test: /\.woff2?$|\.ttf$|\.eot$|\.svg$|\.png$|\.jpe?g$|\.gif$/,
+        loader: `file-loader?name=${getAssetName()}.[ext]`
+      }
+    ]
   },
 
   plugins: [
@@ -43,7 +52,7 @@ module.exports = {
   watch: isDevelopment
 };
 
-// Minify assets for production
+// Minify assets for production.
 if (isProduction) {
   module.exports.plugins.push(
     new webpack.optimize.UglifyJsPlugin({
