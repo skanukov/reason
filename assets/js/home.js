@@ -1,3 +1,3 @@
-let jQuery = require('jquery');
+var jQuery = require('jquery');
 
 console.log(jQuery().jquery);
