@@ -29,3 +29,8 @@ db/migrate/*
 # Idea settings
 .idea/
 *.iml
+
+# Gradle stuff
+.gradle/
+gradlew
+gradlew.bat
