@@ -4,7 +4,7 @@ apply plugin: 'java'
 
 jar {
     manifest {
-        attributes 'Main-Class': 'com.github.skanukov.sparklet.Main'
+        attributes 'Main-Class': 'com.github.skanukov.reason.Main'
     }
 
     from {
