@@ -1,7 +1,7 @@
 package com.github.skanukov.sparklet.core.settings;
 
 import com.github.skanukov.sparklet.core.json.JsonEngineFactory;
-import com.github.skanukov.sparklet.core.lang.Files;
+import com.github.skanukov.sparklet.core.lang.FileUtils;
 import com.google.gson.JsonObject;
 
 import java.io.IOException;
@@ -32,7 +32,7 @@ public final class SettingsFactory {
     private static JsonObject loadFromFile() {
         String settingsFileContent = null;
         try {
-            settingsFileContent = Files.readAllText(SETTINGS_FILE_PATH);
+            settingsFileContent = FileUtils.readAllText(SETTINGS_FILE_PATH);
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(1);
