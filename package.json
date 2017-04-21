@@ -1,5 +1,5 @@
 {
-  "name": "sparklet",
+  "name": "reason",
   "version": "1.0.0",
   "description": "A web framework based on Sparkjava.",
   "main": "index.js",
