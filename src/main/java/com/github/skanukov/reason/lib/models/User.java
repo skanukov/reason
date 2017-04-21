@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * User models.
+ * User model.
  */
 public class User {
     private static final Map<String, String> COLUMN_MAPPINGS = createColumnMappings();

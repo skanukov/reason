@@ -1,7 +1,5 @@
 package com.github.skanukov.reason.core.db;
 
-import com.github.skanukov.reason.core.settings.SettingsFactory;
-import com.google.gson.JsonObject;
 import org.sql2o.Sql2o;
 
 /**
