@@ -32,5 +32,6 @@ db/migrate/*
 
 # Gradle stuff
 .gradle/
+gradle/
 gradlew
 gradlew.bat

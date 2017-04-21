@@ -1,4 +1,4 @@
-{% extends "./templates/web/layouts/app.peb" %}
+{% extends "../layouts/app.peb" %}
 
 {% block title %}Главная{% endblock %}
 

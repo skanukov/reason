@@ -33,11 +33,13 @@ public final class TemplateEngineFactory {
      * @return The template engine.
      */
     private static TemplateEngine createTemplateEngine() {
-        PebbleEngine pebbleEngine = new PebbleEngine(new FileLoader());
-        // Disable template caching for debug mode.
-        if (SettingsFactory.getSettings().get("isDebug").getAsBoolean()) {
-            pebbleEngine.setTemplateCache(null);
-        }
+        // Create a template engine based on FilerLoader
+        // and disable template caching for debug mode.
+        PebbleEngine pebbleEngine = new PebbleEngine.Builder()
+                .loader(new FileLoader())
+                .cacheActive(!SettingsFactory.getSettings().get("isDebug").getAsBoolean())
+                .build();
+
         return new PebbleTemplateEngine(pebbleEngine);
     }
 }
