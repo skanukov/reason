@@ -19,7 +19,7 @@ build/
 node_modules/
 
 # Compiled assets
-public/assets/
+static/assets/
 
 # Include only settings and migration files for Flyway
 db/migrate/*
