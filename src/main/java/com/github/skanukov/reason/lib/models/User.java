@@ -1,10 +1,14 @@
 package com.github.skanukov.reason.lib.models;
 
+import com.github.skanukov.reason.core.db.Sql2oFactory;
+import org.sql2o.Connection;
 import org.sql2o.Query;
+import org.sql2o.Sql2o;
 
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -21,7 +25,15 @@ public class User {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    public static Query fillColumnMappings(Query query) {
+    public static List<User> all() {
+        Sql2o db = Sql2oFactory.getSql2o();
+        try (Connection connection = db.open()) {
+            Query query = connection.createQuery("SELECT * FROM users");
+            return fillColumnMappings(query).executeAndFetch(User.class);
+        }
+    }
+
+    private static Query fillColumnMappings(Query query) {
         for (Map.Entry<String, String> mapping : COLUMN_MAPPINGS.entrySet()) {
             query.addColumnMapping(mapping.getKey(), mapping.getValue());
         }
